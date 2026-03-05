@@ -1,40 +1,61 @@
-const name = "John Doe";
-const age = 25;
-const greeting = "Hello, Advanced JavaScript!";
+// Objecy litteral
 
-// console.log(name + " is " + age + " years old.");
-console.log(`${name} is ${age} years old.`);
-let arr = [1, 2, 3, 4, 5];
-let arr2 = [6, 7, 8, 9, 10];
+const name = "jhon";
+const age = 30;
+const city = "New York";
+const n = "student";
 
-let sum = 0;
-// rest operators (...numbers) - it collects all the remaining arguments into an array
-function add(name, ...numbers) {
-  document.write(`<p>${name} is adding the numbers: ${numbers.join(", ")}</p>`);
-  //   for (let number of numbers) {
-  //     sum += number;
-  //   }
-  for (let i = 0; i < numbers.length; i++) {
-    sum += numbers[i];
-  }
+// before ES6
+const obj1 = {
+  name: name,
+  age: age,
+  city: city,
+};
+
+// in ES6 and later, we can use shorthand property names
+const obj2 = {
+  name,
+  age,
+  city,
+};
+
+// before ES6
+// const obj3 = {
+//   [n + "Name"]: name,
+//   [n + "Age"]: age,
+//   city,
+//   details: function () {
+//     return `${this.studentName} is ${this.studentAge} years old`;
+//   },
+// };
+
+// in ES6
+const obj3 = {
+  [n + "Name"]: name,
+  [n + "Age"]: age,
+  city,
+  details: function () {
+    return `${this.studentName} is ${this.studentAge} years old`;
+  },
+};
+
+function createStudent(name, age, city) {
+  return { name, age, city };
 }
 
-// step: 1
-// add("NZ", 1, 2, 3, 4, 5);
-// step: 2
-// add("NZ", arr);
-// step: 3
-add("NZ", ...arr); // spread operator - it spreads the elements of an array into individual arguments
+// const alice = createStudent("Alice", 25, "Los Angeles");
+const jhon = createStudent(name, age, city);
+const alice = createStudent("Alice", 34, "Pakistan");
+// console.log(obj1);
+// console.log(obj2);
+// console.log(obj3);
+// console.log(obj3.details());
+// console.log(obj3["details"]());
+// console.log(obj3["studentName"]);
+// console.log(obj3["studentAge"]);
+// console.log(obj3.city);
 
-// spread operator in arrays
-let arr3 = [2, ...arr, ...arr2, 44]; // spread operator to combine two arrays
-// console.log(arr3);
-
-// spread operator in objects
-let obj1 = { name: "John", age: 25 };
-let obj2 = { city: "New York", country: "USA" };
-
-let objt3 = { pizzaLover: true, ...obj1, ...obj2, profession: "Developer" }; // spread operator to combine two objects
-console.log(objt3);
-
-// console.log(`The sum is: ${sum}`);
+console.log(jhon);
+console.log(alice);
+console.log(alice.age);
+console.log(alice.city);
