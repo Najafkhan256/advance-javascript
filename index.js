@@ -1,17 +1,42 @@
-let user = {
-  name: "John",
-  age: 30,
-  greeting: () => {
-    console.log(
-      `Hello, my name is ${this.name} and I am ${this.age} years old.`,
-    );
-  },
-};
+// 3 types of methods in JavaScript
+// 1- Contructor method
+// 2- Prototype method
+// 3- Static method
 
-let { name: userName, greeting, age: userAge } = user;
+// const incrementBtnEl = document.getElementById("incrementBtn");
+let score = 1;
 
-greeting = greeting.bind(user);
+class greeting {
+  message() {
+    console.log("WELCOME!");
+  }
+  sorry() {
+    console.log("SORRY!");
+  }
+}
 
-console.log(userName);
-console.log(userAge);
-greeting();
+// incrementBtnEl.addEventListener("click", function () {
+//   incrementBtnEl.textContent = `Incremented! ${score}`;
+//   score++;
+// });
+
+class students {
+  constructor(name) {
+    this.studentName = name;
+    console.log("This is constructor function");
+  }
+  studentMessage() {
+    console.log("Hello " + this.studentName);
+  }
+  static staticMethod() {
+    console.log("This is static function");
+  }
+}
+
+let greet = new greeting();
+let student = new students("Najaf Khan");
+students.staticMethod();
+
+greet.message();
+greet.sorry();
+student.studentMessage();
