@@ -1,61 +1,24 @@
-// Objecy litteral
+let userDetail = ["alice", 34, false, "New York", ["Male", 45000]];
 
-const name = "jhon";
-const age = 30;
-const city = "New York";
-const n = "student";
+let [name, age, isPizzaLover, city, [gender, salary]] = userDetail;
+// console.log(name);
+// console.log(age);
+// console.log(isPizzaLover);
+// console.log(gender);
+// console.log(salary);
 
-// before ES6
-const obj1 = {
-  name: name,
-  age: age,
-  city: city,
-};
+let userDetail2 = ["bob", 28, true, "Los Angeles"];
 
-// in ES6 and later, we can use shorthand property names
-const obj2 = {
-  name,
-  age,
-  city,
-};
+let [userName, ...userArgs] = userDetail2;
 
-// before ES6
-// const obj3 = {
-//   [n + "Name"]: name,
-//   [n + "Age"]: age,
-//   city,
-//   details: function () {
-//     return `${this.studentName} is ${this.studentAge} years old`;
-//   },
-// };
+// console.log(userName);
+// console.log(userArgs);
 
-// in ES6
-const obj3 = {
-  [n + "Name"]: name,
-  [n + "Age"]: age,
-  city,
-  details: function () {
-    return `${this.studentName} is ${this.studentAge} years old`;
-  },
-};
-
-function createStudent(name, age, city) {
-  return { name, age, city };
+function userDetails([name, age, isPizzaLover, city]) {
+  console.log(name);
+  console.log(age);
+  console.log(isPizzaLover);
+  console.log(city);
 }
 
-// const alice = createStudent("Alice", 25, "Los Angeles");
-const jhon = createStudent(name, age, city);
-const alice = createStudent("Alice", 34, "Pakistan");
-// console.log(obj1);
-// console.log(obj2);
-// console.log(obj3);
-// console.log(obj3.details());
-// console.log(obj3["details"]());
-// console.log(obj3["studentName"]);
-// console.log(obj3["studentAge"]);
-// console.log(obj3.city);
-
-console.log(jhon);
-console.log(alice);
-console.log(alice.age);
-console.log(alice.city);
+userDetails(userDetail2);
