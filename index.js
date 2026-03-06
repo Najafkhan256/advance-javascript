@@ -1,42 +1,39 @@
-// 3 types of methods in JavaScript
-// 1- Contructor method
-// 2- Prototype method
-// 3- Static method
-
-// const incrementBtnEl = document.getElementById("incrementBtn");
-let score = 1;
-
-class greeting {
-  message() {
-    console.log("WELCOME!");
-  }
-  sorry() {
-    console.log("SORRY!");
-  }
-}
-
-// incrementBtnEl.addEventListener("click", function () {
-//   incrementBtnEl.textContent = `Incremented! ${score}`;
-//   score++;
-// });
-
-class students {
+class Employee {
   constructor(name) {
-    this.studentName = name;
-    console.log("This is constructor function");
+    this.name = name;
+    console.log("Constructor rendered by " + name);
   }
-  studentMessage() {
-    console.log("Hello " + this.studentName);
-  }
-  static staticMethod() {
-    console.log("This is static function");
+
+  info(name, age, salary) {
+    this.empName = name;
+    this.empAge = age;
+    this.empSalary = salary;
+    console.log(`Employee class
+        Name: ${this.empName}
+        Age: ${this.empAge}
+        Salary: ${this.empSalary}`);
   }
 }
 
-let greet = new greeting();
-let student = new students("Najaf Khan");
-students.staticMethod();
+class Manager extends Employee {
+  constructor(name) {
+    super(name);
+  }
 
-greet.message();
-greet.sorry();
-student.studentMessage();
+  info(name, age, salary) {
+    super.info(name, age, salary);
+    const ta = 1000;
+    const pa = 400;
+    const totalSalary = Number(this.empSalary) + ta + pa;
+    console.log(`Manager class
+        Name: ${this.empName}
+        Age: ${this.empAge}
+        Total Salary: ${totalSalary}`);
+  }
+}
+
+const managerData = new Manager("NZ");
+const employeeData = new Employee("NZ");
+
+managerData.info("Najaf Khan", 22, 20000);
+employeeData.info("Najaf Ali", 26, 22000);
