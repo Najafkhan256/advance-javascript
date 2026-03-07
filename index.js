@@ -1,39 +1,31 @@
-class Employee {
-  constructor(name) {
-    this.name = name;
-    console.log("Constructor rendered by " + name);
-  }
+const onFullfiled = (result) => {
+  console.log(result);
+};
+const onRejected = (error) => {
+  console.log(error);
+};
 
-  info(name, age, salary) {
-    this.empName = name;
-    this.empAge = age;
-    this.empSalary = salary;
-    console.log(`Employee class
-        Name: ${this.empName}
-        Age: ${this.empAge}
-        Salary: ${this.empSalary}`);
-  }
-}
+const prom = (result) => {
+  return new Promise(function (resolved, reject) {
+    console.log("Fetching data, please wait...");
 
-class Manager extends Employee {
-  constructor(name) {
-    super(name);
-  }
+    setTimeout(() => {
+      if (result) {
+        resolved("Here is the success!");
+      } else {
+        reject("Here is the rejection!");
+      }
+    }, 3000);
+  });
+};
 
-  info(name, age, salary) {
-    super.info(name, age, salary);
-    const ta = 1000;
-    const pa = 400;
-    const totalSalary = Number(this.empSalary) + ta + pa;
-    console.log(`Manager class
-        Name: ${this.empName}
-        Age: ${this.empAge}
-        Total Salary: ${totalSalary}`);
-  }
-}
-
-const managerData = new Manager("NZ");
-const employeeData = new Employee("NZ");
-
-managerData.info("Najaf Khan", 22, 20000);
-employeeData.info("Najaf Ali", 26, 22000);
+// prom(true).then(onFullfiled).catch(onRejected);
+prom(false)
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+// prom.then(onFullfiled);
+// prom.catch(onRejected);
