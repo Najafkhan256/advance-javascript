@@ -1,31 +1,41 @@
-const onFullfiled = (result) => {
-  console.log(result);
-};
-const onRejected = (error) => {
-  console.log(error);
-};
-
-const prom = (result) => {
-  return new Promise(function (resolved, reject) {
-    console.log("Fetching data, please wait...");
-
+function promiseResolved(number, stage) {
+  return function (resolved, rejected) {
     setTimeout(() => {
-      if (result) {
-        resolved("Here is the success!");
-      } else {
-        reject("Here is the rejection!");
-      }
-    }, 3000);
-  });
-};
+      console.log(`${stage} Promise is ${resolved ? "resolved" : "rejected"}`);
+      resolved(number);
+    }, number * 100);
+  };
+}
 
-// prom(true).then(onFullfiled).catch(onRejected);
-prom(false)
-  .then((result) => {
-    console.log(result);
+let p1 = new Promise(promiseResolved(10, "First"));
+let p2 = new Promise(promiseResolved(20, "Second"));
+let p3 = new Promise(promiseResolved(30, "Third"));
+let p4 = new Promise((resolved, rejected) => {
+  rejected("4th promise is rejected!");
+});
+
+// let p2 = new Promise((resolved, rejected) => {
+//   setTimeout(() => {
+//     console.log("Second Promise is rejected.");
+//     resolved(20);
+//   }, 2 * 1000);
+// });
+// let p3 = new Promise((resolved, rejected) => {
+//   setTimeout(() => {
+//     console.log("Third Promise is resolved.");
+//     resolved(30);
+//   }, 3 * 1000);
+// });
+
+let total = 0;
+Promise.all([p1, p2, p3, p4])
+  .then((success) => {
+    for (let i in success) {
+      total += success[i];
+    }
+    console.log(`RESULT: ${success}`);
+    console.log(`TOTAL: ${total}`);
   })
   .catch((error) => {
-    console.log(error);
+    console.log(`ERROR: ${error}`);
   });
-// prom.then(onFullfiled);
-// prom.catch(onRejected);
