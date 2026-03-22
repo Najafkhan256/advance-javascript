@@ -9,7 +9,31 @@
   <body>
     <h1>Welcome to Advanced JavaScript</h1>
     <p>This is a sample HTML file for the Advanced JavaScript course.</p>
-    <button id="incrementBtn">Increment</button>
-    <script src="/index.js"></script>
+    <button id="add-user-btn">ADD USER</button>
+    <button id="delete-user-btn">DELETE USER</button>
+    <div id="modal">
+      <div id="modal-content">
+        <span id="close-btn" onclick="closeModal()">&times;</span>
+        <h2 id="modal-title">Modal Title</h2>
+        <form id="formData">
+          Title:<br />
+          <input type="text" name="Title" id="title" /><br />
+          Body: <br />
+          <input type="text" name="Body" id="body" /><br />
+          User ID:<br />
+          <input type="number" name="Number" id="userId" /> <br />
+          <button type="submit" id="modalFormSubmit">Submit</button>
+        </form>
+      </div>
+    </div>
+    <div id="post-list"></div>
+    <form id="formData">
+      Title: <input type="text" name="Title" id="title" /> Body:
+      <input type="text" name="Body" id="body" /> User ID:
+      <input type="number" name="Number" id="userId" />
+      <button type="submit" id="formSubmit">Submit</button>
+    </form>
+    <!-- <button id="incrementBtn">Increment</button> -->
+    <script src="index.js"></script>
   </body>
 </html>
